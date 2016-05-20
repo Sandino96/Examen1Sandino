@@ -28,12 +28,11 @@ void menu(){
 			cout << "Ingrese frase: ";
 			cin.ignore();
 			cin.getline(frase,144);
-			cout << frase << endl;
-			/*if(ejercicio1(frase)){
+			if(ejercicio1(frase)){
 				cout << "Es un pangrama" << endl;
 			} else {
 				cout << "No es un pangrama" << endl;
-			}*/
+			}
 			delete[] frase;
 		} else if (opc == 2){
 					
@@ -44,9 +43,20 @@ void menu(){
 }
 
 bool ejercicio1(char* frase){
+	int contador = 0;
 	char letras[] = "abcdefghijklmnopqrstuvwxyz";
 	for(int i = 0; frase[i]; i++){
-		
+		for(int j = 0; letras[j]; j++){
+			if (frase[i] == letras[j]){
+				contador++;
+				cout << frase[i] << endl;
+			}
+		}
+	}
+	if (contador >= 26){
+		return true;
+	} else {
+		return false;
 	}
 }
 
