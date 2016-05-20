@@ -35,7 +35,7 @@ void menu(){
 			}
 			delete[] frase;
 		} else if (opc == 2){
-					
+				ejercicio2();	
 		} else if(opc == 3){
 		
 		}
@@ -45,10 +45,11 @@ void menu(){
 bool ejercicio1(char* frase){
 	int contador = 0;
 	char letras[] = "abcdefghijklmnopqrstuvwxyz";
+	char letrasIngresadas[26];
 	for(int i = 0; frase[i]; i++){
 		for(int j = 0; letras[j]; j++){
 			if (frase[i] == letras[j]){
-				contador++;
+				letrasIngresadas[j] = letras[j];
 				cout << frase[i] << endl;
 			}
 		}
@@ -61,5 +62,39 @@ bool ejercicio1(char* frase){
 }
 
 void ejercicio2(){
-	
+	int decision = 1;
+	char* totalDeFrases = new char[500];
+	while (decision == 1){
+		int contador = 0, contadorPalabras = 0;
+		char* frase = new char[144];
+		cout << "Ingrese frase: ";
+		cin.ignore();
+		cin.getline(frase,144);
+		for(int i = 0; frase[i]; i++){
+			contador++;
+			if(frase[i] == ' '){
+				contador--;
+				contadorPalabras++;
+				cout << "Palabra " << contadorPalabras << " = " << contador << endl;
+				contador = 0;
+			}
+		}
+		contadorPalabras++;
+		cout << "Palabra " << contadorPalabras << " = " << contador << endl;
+		cout << "Hay " << contadorPalabras << " palabras" << endl;
+		strcat(totalDeFrases, frase);
+		cout << "Desea agregar otra frase: [1=Si/2=No]: ";
+		cin >> decision;
+		delete[] frase;
+	}
+	int imprimirFrases;
+	cout << "Desea imprimir sus frases: [1=Si/2=No]";
+	cin >> imprimirFrases;
+	if(imprimirFrases == 1){
+		cout << totalDeFrases << endl;
+		delete[] totalDeFrases;	
+	} else if (imprimirFrases == 2){
+		cout << "Gracias" << endl;
+		delete[] totalDeFrases;	
+	}
 }
