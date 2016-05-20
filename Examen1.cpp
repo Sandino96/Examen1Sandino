@@ -7,7 +7,7 @@ using namespace std;
 void menu();
 bool ejercicio1(char*);
 void ejercicio2();
-void ejercicio3();
+char* ejercicio3(char*);
 
 int main(int argc, char*agrv[]){
 	menu();
@@ -35,9 +35,16 @@ void menu(){
 			}
 			delete[] frase;
 		} else if (opc == 2){
-				ejercicio2();	
+			ejercicio2();	
 		} else if(opc == 3){
-		
+			char* morse = new char[144];
+			cout << "Ingrese su morse: ";
+			//cin.ignore();
+			cin.getline(morse,144);
+			cout << "Palabra creada: " << ejercicio3(morse) << endl;
+			delete[] ejercicio3(morse);
+			delete[] morse;
+			morse = NULL;
 		}
 	}
 }
@@ -97,4 +104,104 @@ void ejercicio2(){
 		cout << "Gracias" << endl;
 		delete[] totalDeFrases;	
 	}
+}
+
+char* ejercicio3(char* morse){
+	char* nuevaPalabra = new char[144];
+	int size = 0;
+	char temporal[5];
+	for (int i = 0; morse[i]; ++i){
+		if(morse[i] != '&'){
+			for (int j = 0; temporal[j]; ++j){
+				temporal[j] = morse[i];
+			}
+			if(temporal[0] == '.' && temporal[1] == '-'){
+				nuevaPalabra[size] = 'a';
+				size++;
+			} else if (temporal[0] == '-' && temporal[1] == '.' && temporal[2] == '.' && temporal[3] == '.'){
+				nuevaPalabra[size] = 'b';
+				size++;
+			} else if (temporal[0] == '-' && temporal[1] == '.' && temporal[2] == '-' && temporal[3] == '.'){
+				nuevaPalabra[size] = 'c';
+				size++;
+			} else if (temporal[0] == '-' && temporal[1] == '.' && temporal[2] == '.'){
+				nuevaPalabra[size] = 'd';
+				size++;
+			} else if (temporal[0] == '.'){
+				nuevaPalabra[size] = 'e';
+				size++;
+			} else if (temporal[0] == '.' && temporal[1] == '.' && temporal[2] == '-' && temporal[3] == '.'){
+				nuevaPalabra[size] = 'f';
+				size++;
+			} else if (temporal[0] == '-' && temporal[1] == '-' && temporal[2] == '.'){
+				nuevaPalabra[size] = 'g';
+				size++;
+			} else if (temporal[0] == '.' && temporal[1] == '.' && temporal[2] == '.' && temporal[3] == '.'){
+				nuevaPalabra[size] = 'h';
+				size++;
+			} else if (temporal[0] == '.' && temporal[1] == '.'){
+				nuevaPalabra[size] = 'i';
+				size++;
+			} else if (temporal[0] == '.' && temporal[1] == '-' && temporal[2] == '-' && temporal[3] == '-'){
+				nuevaPalabra[size] = 'j';
+				size++;
+			} else if (temporal[0] == '-' && temporal[1] == '.' && temporal[2] == '-'){
+				nuevaPalabra[size] = 'k';
+				size++;
+			} else if (temporal[0] == '.' && temporal[1] == '-' && temporal[2] == '.' && temporal[3] == '.'){
+				nuevaPalabra[size] = 'l';
+				size++;
+			} else if (temporal[0] == '-' && temporal[1] == '-'){
+				nuevaPalabra[size] = 'm';
+				size++;
+			} else if (temporal[0] == '-' && temporal[1] == '.'){
+				nuevaPalabra[size] = 'n';
+				size++;
+			} else if (temporal[0] == '-' && temporal[1] == '-' && temporal[2] == '-'){
+				nuevaPalabra[size] = 'o';
+				size++;
+			} else if (temporal[0] == '.' && temporal[1] == '-' && temporal[2] == '-' && temporal[3] == '.'){
+				nuevaPalabra[size] = 'p';
+				size++;
+			} else if (temporal[0] == '-' && temporal[1] == '-' && temporal[2] == '.' && temporal[3] == '-'){
+				nuevaPalabra[size] = 'q';
+				size++;
+			} else if (temporal[0] == '.' && temporal[1] == '-' && temporal[2] == '.'){
+				nuevaPalabra[size] = 'r';
+				size++;
+			} else if (temporal[0] == '.' && temporal[1] == '.' && temporal[2] == '.'){
+				nuevaPalabra[size] = 's';
+				size++;
+			} else if (temporal[0] == '-'){
+				nuevaPalabra[size] = 't';
+				size++;
+			} else if (temporal[0] == '.' && temporal[1] == '.' && temporal[2] == '-'){
+				nuevaPalabra[size] = 'u';
+				size++;
+			} else if (temporal[0] == '.' && temporal[1] == '.' && temporal[2] == '.' && temporal[3] == '-'){
+				nuevaPalabra[size] = 'v';
+				size++;
+			} else if (temporal[0] == '.' && temporal[1] == '-' && temporal[2] == '-'){
+				nuevaPalabra[size] = 'w';
+				size++;
+			} else if (temporal[0] == '-' && temporal[1] == '.' && temporal[2] == '.' && temporal[3] == '-'){
+				nuevaPalabra[size] = 'x';
+				size++;
+			} else if (temporal[0] == '-' && temporal[1] == '.' && temporal[2] == '-' && temporal[3] == '-'){
+				nuevaPalabra[size] = 'y';
+				size++;
+			} else if (temporal[0] == '-' && temporal[1] == '-' && temporal[2] == '.' && temporal[3] == '.'){
+				nuevaPalabra[size] = 'z';
+				size++;
+			} else {
+				cout << "No existe" << endl;
+			}
+		} else {
+			for (int i = 0; i < 5; ++i){
+				temporal[i] = '\0';
+			}
+			size = 0;
+		}
+	}
+	return nuevaPalabra;
 }
