@@ -35,16 +35,15 @@ void menu(){
 			}
 			delete[] frase;
 		} else if (opc == 2){
-			ejercicio2();	
+			ejercicio2();
 		} else if(opc == 3){
 			char* morse = new char[144];
 			cout << "Ingrese su morse: ";
-			//cin.ignore();
+			cin.ignore();
 			cin.getline(morse,144);
 			cout << "Palabra creada: " << ejercicio3(morse) << endl;
 			delete[] ejercicio3(morse);
 			delete[] morse;
-			morse = NULL;
 		}
 	}
 }
@@ -109,10 +108,10 @@ void ejercicio2(){
 char* ejercicio3(char* morse){
 	char* nuevaPalabra = new char[144];
 	int size = 0;
-	char temporal[5];
-	for (int i = 0; morse[i]; ++i){
+	char temporal[4];
+	for (int i = 0; morse[i]; i++){
 		if(morse[i] != '&'){
-			for (int j = 0; temporal[j]; ++j){
+			for (int j = 0; temporal[j]; j++){
 				temporal[j] = morse[i];
 			}
 			if(temporal[0] == '.' && temporal[1] == '-'){
@@ -194,10 +193,10 @@ char* ejercicio3(char* morse){
 				nuevaPalabra[size] = 'z';
 				size++;
 			} else {
-				cout << "No existe" << endl;
+				return nuevaPalabra;
 			}
 		} else {
-			for (int i = 0; i < 5; ++i){
+			for (int i = 0; i < 4; i++){
 				temporal[i] = '\0';
 			}
 			size = 0;
