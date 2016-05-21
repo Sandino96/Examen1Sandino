@@ -24,16 +24,16 @@ void menu(){
 		cout <<  "Opcion: ";
 		cin >> opc;
 		if(opc == 1){
-			char* frase = new char[144];
+			char* fraseEjercicio1 = new char[144];
 			cout << "Ingrese frase: ";
 			cin.ignore();
-			cin.getline(frase,144);
-			if(ejercicio1(frase)){
+			cin.getline(fraseEjercicio1,144);
+			if(ejercicio1(fraseEjercicio1)){
 				cout << "Es un pangrama" << endl;
 			} else {
 				cout << "No es un pangrama" << endl;
 			}
-			delete[] frase;
+			delete[] fraseEjercicio1;
 		} else if (opc == 2){
 			ejercicio2();
 		} else if(opc == 3){
@@ -58,8 +58,7 @@ bool ejercicio1(char* frase){
 	for(int i = 0; frase[i]; i++){
 		for(int j = 0; letras[j]; j++){
 			if (frase[i] == letras[j]){
-				letrasIngresadas[j] = letras[j];
-				cout << letrasIngresadas[j] << endl;
+				contador++;
 			}
 		}
 	}
@@ -123,14 +122,14 @@ void ejercicio2(){
 char* ejercicio3(char* morse){
 	char* nuevaPalabra = new char[144];
 	int size = 0, j = 0;
-	char temporal[5];
+	char* temporal = new char[100];
 	for (int i = 0; morse[i]; i++){
 		if(morse[i] != '&'){
 			temporal[j] = morse[i];
 			j++;
+		} else {
+			size = 0;
 		}
-	}
-	for (int i = 0; temporal[i]; i++){
 		if(temporal[0] == '.' && temporal[1] == '-'){
 			nuevaPalabra[size] = 'a';
 			size++;
@@ -212,7 +211,7 @@ char* ejercicio3(char* morse){
 		} else {
 			return nuevaPalabra;
 		}
-		break;
 	}
+	delete[] temporal;
 	return nuevaPalabra;
-} 
+}
